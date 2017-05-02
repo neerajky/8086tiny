@@ -4,10 +4,10 @@ pipeline {
     stage('build') {
       steps {
         sh 'make -v'
-	sh 'git -v'
+	sh 'git --version'
 	sh 'which git'
 	sh 'which docker'
-	sh 'docker -v'
+	sh 'docker --version'
       }
     }
   }
