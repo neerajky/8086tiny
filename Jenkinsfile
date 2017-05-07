@@ -4,9 +4,9 @@ pipeline {
     stage('build') {
       steps {
         sh 'make -v'
-	sh 'git --version'
-	sh 'which git'
-	sh 'docker info'
+        sh 'git --version'
+        sh 'which git'
+        sh 'echo ${GIT_BRANCH}'
       }
     }
   }
