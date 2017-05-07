@@ -7,7 +7,7 @@ pipeline {
         sh 'git --version'
         sh 'which git'
         sh '''GIT_BRANCH=`git rev-parse HEAD | git branch -a --contains | grep remotes | sed s/.*remotes.origin.//`
-echo GIT_BRANCH'''
+echo $GIT_BRANCH'''
       }
     }
   }
