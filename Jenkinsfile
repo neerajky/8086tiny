@@ -6,7 +6,8 @@ pipeline {
         sh 'make -v'
         sh 'git --version'
         sh 'which git'
-        sh 'echo ${GIT_BRANCH}'
+        sh '''GIT_BRANCH=`git rev-parse HEAD | git branch -a --contains | grep remotes | sed s/.*remotes.origin.//`
+echo GIT_BRANCH'''
       }
     }
   }
