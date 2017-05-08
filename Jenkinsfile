@@ -7,7 +7,7 @@ pipeline {
         sh 'git --version'
         sh 'which git'
         sh '''GIT_BRANCH=`git rev-parse HEAD | git branch -a --contains | grep remotes | sed s/.*remotes.origin.//`
-echo "Building GIT_BRANCH"'''
+echo "Building ${GIT_BRANCH}"'''
       }
     }
   }
