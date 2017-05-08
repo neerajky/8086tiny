@@ -8,7 +8,8 @@ pipeline {
         sh 'which git'
         sh '''GIT_BRANCH=`git rev-parse HEAD | git branch -a --contains | grep remotes | sed s/.*remotes.origin.//`
 
-echo ${env.BRANCH_NAME}'''
+def gitCommit = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+echo gitCommit'''
       }
     }
   }
