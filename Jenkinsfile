@@ -10,9 +10,9 @@ pipeline {
 echo "Building ${GIT_BRANCH}"'''
       }
     }
-    stage('test') {
+    stage('awsRun') {
       steps {
-        awsIdentity()
+        echo 'awsIdentity()'
       }
     }
   }
