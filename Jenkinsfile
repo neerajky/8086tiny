@@ -10,5 +10,10 @@ pipeline {
 echo "Building ${GIT_BRANCH}"'''
       }
     }
+    stage('') {
+      steps {
+        awsIdentity()
+      }
+    }
   }
 }
