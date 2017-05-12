@@ -11,7 +11,7 @@ node {
          echo "Is Unix"
          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
            echo "${env.PASSWORD}"
-           echo "${env.USERNAME}"y
+           echo "${env.USERNAME}"
            echo 'Push to Repo'
          }
       } else {
