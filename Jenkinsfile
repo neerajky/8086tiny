@@ -2,7 +2,6 @@
 
 node{
     currentBuild.result = "SUCCESS"
-    try {
       stage('Checkout'){
         checkout scm
       }
@@ -33,10 +32,6 @@ node{
           echo "passwordVariable: ${env.SECRET_KEY}"
         }
       }
-    }
-    catch (Exception err) {
-      currentBuild.result = "FAILURE"
-      throw err
     }
     echo "RESULT: ${currentBuild.result}"
   }
