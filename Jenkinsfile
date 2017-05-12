@@ -6,6 +6,7 @@ node {
    stage('Build') {
       if (isUnix()) {
          echo "Is Unix"
+         sh "gcc -v"
       } else {
          echo "Something Else"
       }
