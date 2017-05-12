@@ -31,6 +31,7 @@ node{
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awskeyStaging', accessKeyVariable: 'ACCESS_KEY_ID', secretKeyVariable: 'SECRET_KEY']]) {
           echo "Access Key: ${env.ACCESS_KEY_ID}"
           echo "Secret Key: ${env.SECRET_KEY}"
+          echo "DONE"
         }
       }
     }
