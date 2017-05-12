@@ -23,8 +23,14 @@ node{
         }
         stage('Cleanup'){
           echo 'prune and cleanup'
-          sh 'make clean'
+          sh 'make -v'
         }
+        stage('AWS Deployment'){
+          echo "Deploy to AWS Server"
+          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awskeyStaging', accessKeyVariable: 'ACCESSKEY', secretKeyVariable: 'SECRETKEY']]) {
+            echo "Access Key: ${env.ACCESSKEY}"
+            echo "Secret Key: ${env.ACCESSKEY}"
+          }
       }
     }
     catch (err) {
