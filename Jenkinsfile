@@ -21,7 +21,7 @@ node{
       }
       stage('Cleanup'){
         echo 'prune and cleanup'
-        sh 'gcc -v'
+        sh 'echo ${env.BUILD_NUMBER}'
       }
       stage('AWS Staging Deployment'){
         echo "Deploy to AWS Server"
@@ -30,8 +30,7 @@ node{
           echo "passwordVariable: ${env.SECRET_KEY}"
         }
       }
-    }
-    catch (Exception err) {
+    } catch (Exception err) {
       throw err
     }
   }
