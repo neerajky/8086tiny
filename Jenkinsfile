@@ -10,7 +10,7 @@ node{
         def WORKSPACE = pwd()
         echo "branch: ${env.BRANCH_NAME}"
         echo "Building-${env.BUILD_NUMBER}: ${env.BRANCH_NAME}in ${WORKSPACE}"
-        sh 'make'
+        sh 'g++ -v'
       }
 
       stage('Deploy to DockerHub'){
@@ -24,7 +24,7 @@ node{
       }
       stage('Cleanup'){
         echo 'prune and cleanup'
-        sh 'make clean'
+        sh 'gcc -v'
       }
       stage('AWS Staging Deployment'){
         echo "Deploy to AWS Server"
