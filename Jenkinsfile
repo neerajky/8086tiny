@@ -9,9 +9,9 @@ node {
      echo "Building ${env.BRANCH_NAME}in ${WORKSPACE}"
       if (isUnix()) {
          echo "Is Unix"
-         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-           echo "${env.PASSWORD}"
-           echo "${env.USERNAME}"
+         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws', accessKeyVariable: 'ACCESSKEY', secretKeyVariable: 'SECRETKEY']]) {
+           echo "${env.ACCESSKEY}"
+           echo "${env.SECRETKEY}"
            echo 'Push to Repo'
          }
       } else {
