@@ -1,6 +1,7 @@
 node {
    stage('Preparation') {
      echo 'Preparation'
+     checkout scm
    }
    stage('Build') {
       if (isUnix()) {
