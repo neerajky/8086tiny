@@ -32,7 +32,6 @@ node{
           echo "passwordVariable: ${env.SECRET_KEY}"
         }
       }
-    }
     echo "RESULT: ${currentBuild.result}"
   }
 ​
