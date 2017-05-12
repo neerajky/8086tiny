@@ -16,7 +16,6 @@ node{
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           echo "${env.PASSWORD}"
           echo "${env.USERNAME}"
-          sh 'docker login -u $USERNAME -p $PASSWORD'
           echo 'Push to Repo'
         }
       }
