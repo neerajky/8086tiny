@@ -35,9 +35,10 @@ node{
         }
       }
     }
-    catch (err) {
+    catch (Exception err) {
       currentBuild.result = "FAILURE"
       throw err
     }
+    echo "RESULT: ${currentBuild.result}"
   }
 ​
