@@ -26,12 +26,13 @@ node{
         echo 'prune and cleanup'
         sh 'make clean'
       }
-      stage('AWS Deployment'){
+      stage('AWS Staging Deployment'){
         echo "Deploy to AWS Server"
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CREDENTIALS', accessKeyVariable: 'ACCESS_KEY_ID', secretKeyVariable: 'SECRET_KEY']]) {
-          echo "credentialsId: ${env.AWS_CREDENTIALS}"
-          echo "accessKeyVariable: ${env.ACCESS_KEY_ID}"
-          echo "secretKeyVariable: ${env.SECRET_KEY}"
+        //withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CREDENTIALS', accessKeyVariable: 'ACCESS_KEY_ID', secretKeyVariable: 'SECRET_KEY']]) {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_CREDENTIALS_STAGING', usernameVariable: 'ACCESS_KEY_ID', passwordVariable: 'SECRET_KEY']]) {
+          echo "credentialsId: ${env.AWS_CREDENTIALS_STAGING}"
+          echo "usernameVariable: ${env.ACCESS_KEY_ID}"
+          echo "passwordVariable: ${env.SECRET_KEY}"
         }
       }
     }
