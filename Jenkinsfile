@@ -10,7 +10,7 @@ node{
         def WORKSPACE = pwd()
         echo "branch: ${env.BRANCH_NAME}"
         echo "Building-${env.BUILD_NUMBER}: ${env.BRANCH_NAME}in ${WORKSPACE}"
-        sh 'gcc -v'
+        sh 'make'
       }
 
       stage('Deploy to DockerHub'){
@@ -21,16 +21,17 @@ node{
           sh 'docker login -u $USERNAME -p $PASSWORD'
           echo 'Push to Repo'
         }
-        stage('Cleanup'){
-          echo 'prune and cleanup'
-          sh 'make -v'
+      }
+      stage('Cleanup'){
+        echo 'prune and cleanup'
+        sh 'make -v'
+      }
+      stage('AWS Deployment'){
+        echo "Deploy to AWS Server"
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awskeyStaging', accessKeyVariable: 'ACCESSKEY', secretKeyVariable: 'SECRETKEY']]) {
+          echo "Access Key: ${env.ACCESSKEY}"
+          echo "Secret Key: ${env.ACCESSKEY}"
         }
-        stage('AWS Deployment'){
-          echo "Deploy to AWS Server"
-          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awskeyStaging', accessKeyVariable: 'ACCESSKEY', secretKeyVariable: 'SECRETKEY']]) {
-            echo "Access Key: ${env.ACCESSKEY}"
-            echo "Secret Key: ${env.ACCESSKEY}"
-          }
       }
     }
     catch (err) {
