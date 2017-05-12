@@ -21,8 +21,8 @@ node{
       }
       stage('Cleanup'){
         echo 'prune and cleanup'
-        echo ${env.JOB_NAME}-${env.BUILD_NUMBER}
-        sh 'echo ${env.JOB_NAME}-${env.BUILD_NUMBER}'
+        echo '${env.JOB_NAME}-${env.BUILD_NUMBER}'
+        sh "echo '${env.JOB_NAME}-${env.BUILD_NUMBER}'"
       }
       stage('AWS Staging Deployment'){
         echo "Deploy to AWS Server"
