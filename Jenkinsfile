@@ -9,7 +9,7 @@ node{
       stage('Build'){
         def WORKSPACE = pwd()
         echo "branch: ${env.BRANCH_NAME}"
-        echo "Building ${env.BRANCH_NAME}in ${WORKSPACE}"
+        echo "Building-${env.BUILD_NUMBER}: ${env.BRANCH_NAME}in ${WORKSPACE}"
         sh 'gcc -v'
       }
 
