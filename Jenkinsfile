@@ -9,7 +9,11 @@ node {
      echo "Building ${env.BRANCH_NAME}in ${WORKSPACE}"
       if (isUnix()) {
          echo "Is Unix"
-         sh "gcc -v"
+         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+           echo "${env.PASSWORD}"
+           echo "${env.USERNAME}"y
+           echo 'Push to Repo'
+         }
       } else {
          echo "Something Else"
       }
