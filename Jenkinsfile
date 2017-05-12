@@ -28,7 +28,7 @@ node{
       }
       stage('AWS Deployment'){
         echo "Deploy to AWS Server"
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awskeyStaging', accessKeyVariable: 'ACCESS_KEY_ID', secretKeyVariable: 'SECRET_KEY']]) {
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CREDENTIALS', accessKeyVariable: 'ACCESS_KEY_ID', secretKeyVariable: 'SECRET_KEY']]) {
           echo "DONE"
         }
       }
