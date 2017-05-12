@@ -8,9 +8,9 @@ node{
       }
       stage('Build'){
         def WORKSPACE = pwd()
-        def GIT_BRANCH= 'git rev-parse HEAD | git branch -a --contains | grep remotes | sed s/.*remotes.origin.//'
-        echo "Building ${GIT_BRANCH} in ${WORKSPACE}"
-        sh 'make'
+        echo "branch: ${env.BRANCH_NAME}"
+        echo "Building ${env.BRANCH_NAME}in ${WORKSPACE}"
+        sh 'make clean'
       }
 
       stage('Deploy to DockerHub'){
