@@ -1,16 +1,15 @@
-#!groovy
-
-node('node'){
-    currentBuild.result = "SUCCESS"
-    try{
-     stage('Checkout'){
-        checkout scm
-     }
-    } catch (error) {
-        stage "Cleanup after fail"
-        throw error
-    } finally {
-      echo "RESULT: ${currentBuild.result}"
-    }
-  }
-​
+node {
+   stage('Preparation') {
+     echo 'Preparation'
+   }
+   stage('Build') {
+      if (isUnix()) {
+         echo "Is Unix"
+      } else {
+         echo "Something Else"
+      }
+   }
+   stage('Results') {
+     echo "this is result"
+   }
+}
