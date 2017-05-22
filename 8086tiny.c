@@ -258,7 +258,7 @@ void audio_callback(void *data, unsigned char *stream, int len)
 // Emulator entry point
 int main(int argc, char **argv)
 {
-printf("This is main function \n");
+printf("This is main function test 2 \n");
 #ifndef NO_GRAPHICS
 	// Initialise SDL
 	SDL_Init(SDL_INIT_AUDIO);
