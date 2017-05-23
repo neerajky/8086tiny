@@ -27,7 +27,7 @@ node{
       }
 
       stage('Build Artifacts'){
-        [$class: 'CopyArtifact', filter: 'build/*', fingerprintArtifacts: true, flatten: true, projectName: 'echo-develop-pipeline', selector: [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}'], target: './artifacts/']
+        [$class: 'CopyArtifact', filter: 'build/*', fingerprintArtifacts: true, flatten: true, projectName: 'neerajky/8086tiny/tests', selector: [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}']]
       }
 
       stage('AWS Staging Deployment'){
