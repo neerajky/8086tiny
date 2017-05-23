@@ -25,6 +25,11 @@ node{
         echo '${env.JOB_NAME}-${env.BUILD_NUMBER}'
         sh "echo '${env.JOB_NAME}-${env.BUILD_NUMBER}'"
       }
+
+      stage('Build Artifacts'){
+        [$class: 'CopyArtifact', filter: 'build/*', fingerprintArtifacts: true, flatten: true, projectName: 'echo-develop-pipeline', selector: [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}'], target: './artifacts/']]
+      }
+
       stage('AWS Staging Deployment'){
         echo "Deploy to AWS Server"
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CREDENTIALS_STAGING', accessKeyVariable: 'ACCESS_KEY_ID', secretKeyVariable: 'SECRET_KEY']]) {
