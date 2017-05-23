@@ -3,14 +3,12 @@ pipeline{
   stages{
     stage('Checkout'){
       steps{
-        properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/15 * * * *')])])
         checkout scm
 	}
       }
 
       stage('Build'){
         steps{
-          def WORKSPACE = pwd()
           echo "branch: ${env.BRANCH_NAME}"
           echo "Building-${env.BUILD_NUMBER}: ${env.BRANCH_NAME}in ${WORKSPACE}"
           sh 'g++ -v'
