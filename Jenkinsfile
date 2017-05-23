@@ -1,14 +1,15 @@
 pipeline{
   agent any
+  stages{
     stage('Checkout'){
-      step{
+      steps{
         properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/15 * * * *')])])
         checkout scm
 	}
       }
 
       stage('Build'){
-        step{
+        steps{
           def WORKSPACE = pwd()
           echo "branch: ${env.BRANCH_NAME}"
           echo "Building-${env.BUILD_NUMBER}: ${env.BRANCH_NAME}in ${WORKSPACE}"
@@ -17,7 +18,7 @@ pipeline{
       }
 
       stage('Deploy to DockerHub'){
-        step{
+        steps{
           echo 'Login to Docker Hub'
           withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             echo "${env.PASSWORD}"
@@ -28,7 +29,7 @@ pipeline{
 	}
       }
       stage('Cleanup'){
-        step{
+        steps{
           echo 'prune and cleanup'
           echo '${env.JOB_NAME}-${env.BUILD_NUMBER}'
           sh "echo '${env.JOB_NAME}-${env.BUILD_NUMBER}'"
@@ -36,7 +37,7 @@ pipeline{
       }
 
       stage('Build Artifacts'){
-        step{
+        steps{
 	  echo "Build Artifacts"
 	}
       }
@@ -51,3 +52,4 @@ pipeline{
 	 }
       }
   }
+}
